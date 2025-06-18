@@ -1,0 +1,961 @@
+/* Basis-Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Mobile First: Grundstruktur */
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 0.05em;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+h1, h2, h3, .offcanvas-menu, .card-front {
+  font-weight: 900;
+  font-size: 2rem;
+  font-family: 'Orbitron', sans-serif;
+}
+
+p {
+  font-weight: normal;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Hero-Sektion */
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100vh;
+  text-align: center;
+  color: white;
+}
+
+.hero-logo {
+  position: absolute;
+  top: 0.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 85px; 
+  z-index: 5;
+}
+
+@media (min-width: 1200px) {
+  .hero-logo {
+    display: none; /* Standardmäßig ausblenden */
+  }
+}
+
+.hero-image {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 0;
+}
+
+.hero-video {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+
+.hero-image.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+@keyframes fadeSlideshow {
+  0%, 100%   { opacity: 0; }
+  8%, 30%    { opacity: 1; }
+}
+
+/* Titel im Hero */
+.hero-title {
+  position: static;
+  margin-top: 25rem;
+  z-index: 2;
+  color: white;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: bold;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+  transition: transform 0.1s ease-out;
+}
+
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 3.5rem;
+    margin-top: 25rem;
+  }
+
+  .hero-subtitle {
+    top: 30rem;
+    font-size: 1.3rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero-title {
+    font-size: 4.5rem;
+    margin-top: 25rem;
+  }
+
+  .hero-subtitle {
+    top: 26rem;
+    font-size: 1.5rem;
+  }
+}
+
+
+.hero-heading {
+  font-family: 'Orbitron', sans-serif; /* oder jede gewünschte Schriftart */
+  font-size: 2rem;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.hero-section {
+  background: black;
+  color: white;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.hero-content {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: opacity, transform;
+}
+
+.hero-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+  letter-spacing: 0.3px;
+}
+
+
+/* Menübutton */
+.menu-toggle {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 1001;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.close-menu {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 1001;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+/* Offcanvas Menü */
+.offcanvas-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  color: white;
+  transition: right 0.3s ease-in-out;
+  z-index: 100;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .offcanvas-menu {
+    padding: 1rem;
+  }
+
+  .offcanvas-logo {
+    max-width: 120px; /* z. B. statt vorher 200px */
+    height: auto;
+  }
+
+  .offcanvas-menu ul li a {
+    font-size: 1.2rem; /* kleinere Schrift */
+    padding: 0.5rem 0; /* schmalerer Abstand */
+  }
+
+  .close-menu {
+    font-size: 1.2rem; /* kleineres Schließen-Symbol */
+  }
+}
+
+
+@media (min-width: 1200px) {
+  .menu-toggle,
+  .offcanvas-menu {
+    display: none;
+  }
+}
+
+
+.offcanvas-menu.open {
+  right: 0;
+}
+
+
+
+
+.offcanvas-menu ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.offcanvas-menu li {
+  margin: 1.5rem 0;
+}
+.offcanvas-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.offcanvas-menu a:hover {
+  color: #ff0000;
+}
+
+.offcanvas-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.offcanvas-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Menü schließen Button */
+.close-menu {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.hero::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 14%; /* Nur oberer Bereich */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Desktop Navigation Styling */
+.desktop-nav {
+  display: none;
+}
+
+@media (min-width: 1200px) {
+  .desktop-nav {
+    display: flex;
+    width: 100%;
+    background-color: #111;
+    transition: transform 0.3s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+  }
+
+  .nav-container {
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    width: 100%;
+  }
+
+  .nav-logo {
+    margin-right: 2rem;
+    flex-shrink: 0; /* verhindert, dass Logo schrumpft */
+  }
+
+  
+
+  .nav-logo img {
+    height: 45px;
+    width: auto;
+    display: block;
+  }
+
+  .nav-links {
+    display: flex;
+    justify-content: space-between; /* gleichmäßige Verteilung */
+    flex: 1; /* nimmt restlichen Platz ein */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 2rem; /* gleichmäßiger Abstand */
+  }
+
+  .nav-links li {
+    white-space: nowrap;
+  }
+
+  .nav-links li a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    display: inline-block;
+    padding: 0.5rem 0;
+  }
+}
+
+
+  .nav-links li a:hover {
+    color: #ff0000;
+  }
+
+  /* Animation beim Scrollen */
+  .scroll-nav.hide {
+    transform: translateY(-100%);
+  }
+
+  .scroll-nav.show {
+    transform: translateY(0);
+  }
+
+
+/* Section Layout */
+.section {
+  padding: 2rem 5vw;
+  max-width: 1600px;
+  margin: 0 auto;
+  hyphens: auto;
+}
+
+.section img {
+  width: 50%;
+  height: auto;
+  margin-top: 1rem;
+}
+
+
+/* Mobile (Standard) */
+.section-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  text-align: left;
+  flex-wrap: wrap;
+}
+
+.section-content.reverse {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.section-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.section h2.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-inner {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: opacity, transform;
+}
+
+.section-inner.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.section-content img {
+  width: 45%;
+  height: auto;
+  max-width: 100%;
+  border-radius: 3px;
+}
+
+.section-content p {
+  flex: 1;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+  .section-content,
+  .section-content.reverse {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .section-content p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin-bottom: 1rem;
+  }
+
+  .section-content img {
+    width: 30%;
+  }
+}
+
+
+.image-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.image-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.image-overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease;
+  cursor: zoom-in;
+}
+
+.image-overlay .close-button {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 2rem;
+  border: none;
+  cursor: pointer;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.image-overlay .close-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+
+/* Ästhetik Galerie */
+.grid-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .grid-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid-gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+.grid-gallery img {
+  width: 100%;
+  transition: opacity 1s ease-in-out;
+}
+
+.usp-section {
+  padding: 3rem 2rem;
+  background: #f9f9f9;
+}
+
+/* USP Flip Cards */
+.usp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: center; /* zentriert horizontal */
+  flex-wrap: wrap; /* Falls mehr Karten, auf mehrere Reihen verteilen */
+}
+
+@media (min-width: 1200px) {
+  .usp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    justify-items: center;
+  }
+}
+
+
+.usp-card {
+  perspective: 1000px;
+  width: 300px;
+  height: 150px;
+  cursor: pointer;
+}
+
+.usp-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.usp-card.flip .usp-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Nur Hover auf Geräten mit Maus */
+@media (hover: hover) {
+  .usp-card:not(.flip):hover .usp-card-inner {
+    transform: rotateY(180deg);
+  }
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card-front {
+  font-weight: bold;
+  font-size: 1.5rem;
+  background: linear-gradient(135deg, #d00000, #ff3b3b);
+  color: white;
+}
+
+.card-back {
+  font-size: 1rem;
+  background: linear-gradient(135deg, #111, #444);
+  color: white;
+  transform: rotateY(180deg);
+}
+
+
+/* Call-to-action Button */
+.cta-button {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  display: block;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  background: rgb(0, 0, 0);
+  color: rgb(217,217,217);
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  transition: background 0.3s ease;
+}
+
+@media (min-width: 1200px) {
+  .cta-button {
+    font-size: 1.2rem;
+    padding: 1.2rem 2.5rem;
+  }
+}
+
+
+.cta-button:hover {
+  background: #ff0000;
+}
+
+
+/* Footer */
+.footer {
+  font-family: 'Orbitron', sans-serif;
+  background: #2b2b2b;
+  color: white;
+  padding: 1.5rem 1rem;
+  text-align: center;
+}
+.footer ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+.footer li {
+  margin: 0.5rem 0;
+}
+.footer a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+  gap: 0.9rem;
+}
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer p {
+  margin: 0;
+  white-space: nowrap;
+  font-size: 0.9rem;
+}
+
+
+@media (min-width: 786px) {
+  .footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Optional für kleinere Bildschirme */
+  padding: 1rem 2rem;
+  background-color: #2b2b2b;
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  }
+
+.footer ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem; /* Abstand zwischen Links */
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.footer li a {
+  text-decoration: none;
+  color: white;
+  white-space: nowrap;
+}
+
+.footer li a:hover {
+  text-decoration: underline;
+}
+
+.footer p {
+  margin: 0;
+  white-space: nowrap;}
+}
+
+.aesthetik-scroll-section {
+  height: 400vh; /* = 4 Bilder → 1 Bildschirmhöhe pro Bild */
+  position: relative;
+}
+
+.sticky-carousel {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.carousel-image {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.carousel-image.active {
+  opacity: 1;
+}
+
+body.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.carousel-text-overlay {
+  position: relative;
+  z-index: 2;
+  top: 80%; /* etwas unter die Mitte */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  padding: 1rem;
+  font-size: 2rem;
+  text-align: center;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  pointer-events: none;
+  background: none; /* Hintergrund weg */
+}
+
+.gradient-background {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 350px; /* Höhe nach Bedarf */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 30%, transparent);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.section h2 {
+    text-align: center;
+  }
+
+.Leistung-Text {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+/* MODAL STYLE */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #111;
+  color: white;
+  padding: 2rem;
+  border-radius: 3px;
+  max-width: 400px;
+  width: 90%;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px; right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.6rem 0;
+  border: none;
+  border-radius: 4px;
+  background: #333;
+  color: white;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.primary-button {
+  background: red;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 1px;
+  cursor: pointer;
+}
+
+.secondary-button {
+  background: white;
+  color: black;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 1px;
+  cursor: pointer;
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: white;
+}
+
+.feedback-message {
+  margin-top: 1rem;
+  font-weight: bold;
+  color: rgb(255, 0, 0);
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Lightbox Overlay */
+#lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  z-index: 9999;
+}
+
+#lightbox-overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+/* Sichtbar-Zustand */
+#lightbox-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+#lightbox-overlay img:hover {
+  transform: scale(1.02);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.3rem 0.6rem;
+  z-index: 10000;
+  transition: background 0.3s ease;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+/* Standard: Mobile Logo anzeigen */
+.offcanvas-logo {
+  display: block;
+  width: 80%;
+  max-width: 120px; /* Begrenzung */
+  height: auto;
+  margin-bottom: 1.5rem;
+}
+
+/* Ab 1200px: Mobile Logo ausblenden */
+@media (min-width: 1200px) {
+  .offcanvas-logo {
+    display: none !important;
+  }
+}
