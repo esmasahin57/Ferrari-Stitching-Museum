@@ -10,8 +10,9 @@ body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
   letter-spacing: 0.05em;
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.6;
+  hyphens: manual;
 }
 
 h1, h2, h3, .offcanvas-menu, .card-front {
@@ -21,7 +22,7 @@ h1, h2, h3, .offcanvas-menu, .card-front {
 }
 
 p {
-  font-weight: normal;
+  font-weight: 400;
 }
 
 img {
@@ -172,25 +173,31 @@ img {
   background: none;
   border: none;
   color: white;
-  font-size: 2rem;
+  font-size: 2.5rem;
   cursor: pointer;
   transition: transform 0.3s ease;
   text-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 
 .close-menu {
+  font-size: 4rem;           /* Vergrößert das ✕-Zeichen */
+  width: 70px;               /* Größere Klickfläche */
+  height: 70px;
+  display: flex;             /* Zentriert das Symbol */
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
   position: fixed;
   top: 1.5rem;
   right: 1.5rem;
   z-index: 1001;
-  background: none;
-  border: none;
   color: white;
-  font-size: 2rem;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
+
 
 /* Offcanvas Menü */
 .offcanvas-menu {
@@ -225,7 +232,7 @@ img {
   }
 
   .close-menu {
-    font-size: 1.2rem; /* kleineres Schließen-Symbol */
+    font-size: 2rem; /* kleineres Schließen-Symbol */
   }
 }
 
@@ -253,12 +260,12 @@ img {
 }
 
 .offcanvas-menu li {
-  margin: 1.5rem 0;
+  margin: 1rem 0;
 }
 .offcanvas-menu a {
   color: white;
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
 .offcanvas-menu a:hover {
@@ -327,7 +334,7 @@ img {
   .nav-container {
     display: flex;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 0.5rem 2rem;
     width: 100%;
   }
 
@@ -346,8 +353,8 @@ img {
 
   .nav-links {
     display: flex;
-    justify-content: space-between; /* gleichmäßige Verteilung */
-    flex: 1; /* nimmt restlichen Platz ein */
+    /*justify-content: space-between; /* gleichmäßige Verteilung */
+    /*flex: 1; /* nimmt restlichen Platz ein */
     list-style: none;
     margin: 0;
     padding: 0;
@@ -362,12 +369,22 @@ img {
     text-decoration: none;
     color: white;
     font-family: 'Orbitron', sans-serif;
-    font-size: 0.8rem;
+    font-size: 5vw;
+    font-size: 2vh;
     display: inline-block;
     padding: 0.5rem 0;
   }
 }
 
+
+  .nav-links li a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    padding: 0.5rem 0.2rem;
+    transition: color 0.3s ease;
+  }
 
   .nav-links li a:hover {
     color: #ff0000;
@@ -385,7 +402,7 @@ img {
 
 /* Section Layout */
 .section {
-  padding: 2rem 5vw;
+  padding: 1rem 1rem;
   max-width: 1600px;
   margin: 0 auto;
   hyphens: auto;
@@ -399,23 +416,19 @@ img {
 
 
 /* Mobile (Standard) */
-.section-content {
+.section-content,
+.section-content.reverse {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-  text-align: left;
-  flex-wrap: nowrap;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+  padding: 0 1rem;
 }
 
 .section-content.reverse {
-  display: flex;
   flex-direction: row-reverse;
-  align-items: center;
-  gap: 2rem;
-  flex-wrap: nowrap;
-  margin-top: 1.5rem;
 }
 
 .section-content.visible {
@@ -442,6 +455,7 @@ img {
 }
 
 
+/* Bildgröße */
 .section-content img {
   width: 45%;
   height: auto;
@@ -449,11 +463,14 @@ img {
   border-radius: 3px;
 }
 
+/* Textseite */
 .section-content p {
   flex: 1;
   font-size: 1rem;
   line-height: 1.5;
-  padding-left: 1.5rem;
+  padding: 1rem;
+  box-sizing: border-box;
+  max-width: 80%;
 }
 
 @media (min-width: 768px) {
@@ -668,7 +685,7 @@ img {
   font-family: 'Orbitron', sans-serif;
   background: #2b2b2b;
   color: white;
-  padding: 1.5rem 1rem;
+  padding: 1rem 1rem;
   text-align: center;
 }
 .footer ul {
@@ -693,6 +710,7 @@ img {
   margin: 0;
   white-space: nowrap;
   font-size: 0.9rem;
+  font-weight: normal;
 }
 
 
@@ -702,7 +720,7 @@ img {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap; /* Optional für kleinere Bildschirme */
-  padding: 1rem 2rem;
+  padding: 0.5rem 2rem;
   background-color: #2b2b2b;
   color: white;
   font-family: 'Orbitron', sans-serif;
@@ -884,6 +902,34 @@ body.no-scroll {
   color: rgb(255, 0, 0);
   text-align: center;
 }
+
+@media (min-width: 1200px) {
+  .modal-content {
+    max-width: 600px;
+    padding: 3rem;
+    font-size: 1.1rem;
+  }
+
+  .modal-content input {
+    padding: 1rem;
+    font-size: 0.8rem;
+  }
+
+  .primary-button,
+  .secondary-button {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .close-btn {
+    font-size: 2rem;
+  }
+
+  .feedback-message {
+    font-size: 1.1rem;
+  }
+}
+
 
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.95); }
