@@ -406,7 +406,7 @@ img {
   gap: 1.5rem;
   margin-top: 1.5rem;
   text-align: left;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .section-content.reverse {
@@ -414,7 +414,7 @@ img {
   flex-direction: row-reverse;
   align-items: center;
   gap: 2rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   margin-top: 1.5rem;
 }
 
